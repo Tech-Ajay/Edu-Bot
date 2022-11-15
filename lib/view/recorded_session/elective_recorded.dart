@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:hackathon/view/recorded_session/video.dart';
+import 'package:edu_bot/view/recorded_session/video.dart';
 
 class ElectiveRecordedSession extends StatefulWidget {
   const ElectiveRecordedSession({Key? key}) : super(key: key);

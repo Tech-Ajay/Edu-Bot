@@ -4,9 +4,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hackathon/controller/login_controller.dart';
-import 'package:hackathon/model/forum_model.dart';
-import 'package:hackathon/services/user_service.dart';
+import 'package:edu_bot/controller/login_controller.dart';
+import 'package:edu_bot/model/forum_model.dart';
+import 'package:edu_bot/services/user_service.dart';
 import 'package:uuid/uuid.dart';
 
 class ForumView extends StatefulWidget {
@@ -84,17 +84,17 @@ class _ForumViewState extends State<ForumView> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                           decoration: BoxDecoration(
-                          color: Color(0xff3f3d56),
-                                          borderRadius: BorderRadius.circular(15),
-                                          // boxShadow: [
-                                          //   BoxShadow(
-                                          // color: Colors.pink.shade200,
-                                          //     spreadRadius: 2,
-                                          //     blurRadius: 4,
-                                          //   ),
-                                          // ],
-                                        ),
+                          decoration: BoxDecoration(
+                            color: Color(0xff3f3d56),
+                            borderRadius: BorderRadius.circular(15),
+                            // boxShadow: [
+                            //   BoxShadow(
+                            // color: Colors.pink.shade200,
+                            //     spreadRadius: 2,
+                            //     blurRadius: 4,
+                            //   ),
+                            // ],
+                          ),
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +103,10 @@ class _ForumViewState extends State<ForumView> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Icon(Icons.cloud,color: Colors.white,),
+                                      child: Icon(
+                                        Icons.cloud,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                     Expanded(
                                       child: Padding(
@@ -189,17 +192,18 @@ class _ForumViewState extends State<ForumView> {
                           child: Container(
                             width: MediaQuery.of(context).size.width * 3,
                             height: MediaQuery.of(context).size.height - 300,
- decoration: BoxDecoration(
-                          color: Color(0xff3f3d56),
-                                          borderRadius: BorderRadius.circular(15),
-                                          // boxShadow: [
-                                          //   BoxShadow(
-                                          // color: Colors.pink.shade200,
-                                          //     spreadRadius: 2,
-                                          //     blurRadius: 4,
-                                          //   ),
-                                          // ],
-                                        ),                            child: Padding(
+                            decoration: BoxDecoration(
+                              color: Color(0xff3f3d56),
+                              borderRadius: BorderRadius.circular(15),
+                              // boxShadow: [
+                              //   BoxShadow(
+                              // color: Colors.pink.shade200,
+                              //     spreadRadius: 2,
+                              //     blurRadius: 4,
+                              //   ),
+                              // ],
+                            ),
+                            child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: FutureBuilder(
                                     future: getAllForumQuestions(
@@ -225,9 +229,16 @@ class _ForumViewState extends State<ForumView> {
                                                   children: [
                                                     Row(
                                                       children: [
-                                                        Text("Question By: ",style: TextStyle(color: Colors.white),),
                                                         Text(
-                                                            "anonymous",style: TextStyle(color: Colors.white)),
+                                                          "Question By: ",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        Text("anonymous",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white)),
                                                       ],
                                                     ),
                                                     Text(
@@ -235,31 +246,44 @@ class _ForumViewState extends State<ForumView> {
                                                       style: TextStyle(
                                                           fontSize: 16,
                                                           fontWeight:
-                                                              FontWeight.bold,color: Colors.white),
+                                                              FontWeight.bold,
+                                                          color: Colors.white),
                                                     ),
                                                     Container(
-                                                      height:   allQueries[index]
-                                                                    .answers!
-                                                                    .length == 0 ? 40  
-                                                                    : allQueries[index]
-                                                                    .answers!
-                                                                    .length == 1 ? 80 : allQueries[index]
-                                                                    .answers!
-                                                                    .length == 2 ?
-                                                    130 : 190,
-                                                       decoration: BoxDecoration(
-                                              color: Colors.grey.shade300,
-                                          borderRadius: BorderRadius.circular(15),
-                                          // boxShadow: [
-                                          //   BoxShadow(
-                                          // color: Colors.pink.shade200,
-                                          //     spreadRadius: 2,
-                                          //     blurRadius: 4,
-                                          //   ),
-                                          // ],
-                                        ),
+                                                      height: allQueries[index]
+                                                                  .answers!
+                                                                  .length ==
+                                                              0
+                                                          ? 40
+                                                          : allQueries[index]
+                                                                      .answers!
+                                                                      .length ==
+                                                                  1
+                                                              ? 80
+                                                              : allQueries[index]
+                                                                          .answers!
+                                                                          .length ==
+                                                                      2
+                                                                  ? 130
+                                                                  : 190,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors
+                                                            .grey.shade300,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
+                                                        // boxShadow: [
+                                                        //   BoxShadow(
+                                                        // color: Colors.pink.shade200,
+                                                        //     spreadRadius: 2,
+                                                        //     blurRadius: 4,
+                                                        //   ),
+                                                        // ],
+                                                      ),
                                                       child: Padding(
-                                                        padding: const EdgeInsets.all(8.0),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
                                                         child: Column(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
@@ -268,9 +292,21 @@ class _ForumViewState extends State<ForumView> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: [
-                                                              allQueries[index]
-                                                                      .answers!
-                                                                      .length == 0 ? Text("No Answers Yet!",style: TextStyle(fontWeight: FontWeight.bold)) :Text("Answers :",style: TextStyle(fontWeight: FontWeight.bold)),
+                                                            allQueries[index]
+                                                                        .answers!
+                                                                        .length ==
+                                                                    0
+                                                                ? Text(
+                                                                    "No Answers Yet!",
+                                                                    style: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold))
+                                                                : Text(
+                                                                    "Answers :",
+                                                                    style: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight.bold)),
                                                             Expanded(
                                                               child: ListView
                                                                   .builder(
@@ -286,13 +322,9 @@ class _ForumViewState extends State<ForumView> {
                                                                       itemBuilder:
                                                                           (context,
                                                                               indexx) {
-                                                                        List<
-                                                                            String> ans = allQueries[
-                                                                                index]
-                                                                            .answers![
-                                                                                indexx]
-                                                                            .split(
-                                                                                '.');
+                                                                        List<String>
+                                                                            ans =
+                                                                            allQueries[index].answers![indexx].split('.');
                                                                         return Column(
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.start,
@@ -302,8 +334,7 @@ class _ForumViewState extends State<ForumView> {
                                                                             Text(
                                                                               "${indexx + 1}: ${ans[0]}",
                                                                             ),
-                                                                            Text(
-                                                                                "                 answered by:- ${ans[1]}"),
+                                                                            Text("                 answered by:- ${ans[1]}"),
                                                                           ],
                                                                         );
                                                                       }),
@@ -476,7 +507,8 @@ class _ForumViewState extends State<ForumView> {
                                                           ),
                                                           style: ElevatedButton
                                                               .styleFrom(
-                                                            primary: Color(0xff6c64fa),
+                                                            primary: Color(
+                                                                0xff6c64fa),
                                                             padding: EdgeInsets
                                                                 .symmetric(
                                                                     horizontal:
@@ -503,30 +535,30 @@ class _ForumViewState extends State<ForumView> {
                 padding: const EdgeInsets.symmetric(vertical: 30),
                 child: Column(
                   children: [
-                     Text(
-                        "My Queries",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
+                    Text(
+                      "My Queries",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
                     Container(
- decoration: BoxDecoration(
-                          color: Color(0xff3f3d56),
-                                          borderRadius: BorderRadius.circular(15),
-                                          // boxShadow: [
-                                          //   BoxShadow(
-                                          // color: Colors.pink.shade200,
-                                          //     spreadRadius: 2,
-                                          //     blurRadius: 4,
-                                          //   ),
-                                          // ],
-                                        ),                      height: 576,
+                      decoration: BoxDecoration(
+                        color: Color(0xff3f3d56),
+                        borderRadius: BorderRadius.circular(15),
+                        // boxShadow: [
+                        //   BoxShadow(
+                        // color: Colors.pink.shade200,
+                        //     spreadRadius: 2,
+                        //     blurRadius: 4,
+                        //   ),
+                        // ],
+                      ),
+                      height: 576,
                       width: MediaQuery.of(context).size.width * .4,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                           
                             FutureBuilder(
                                 future: getUserForumQuestions(
                                     email: loginViewController.user!.email!),
@@ -534,10 +566,13 @@ class _ForumViewState extends State<ForumView> {
                                     AsyncSnapshot<List<ForumModel>> snapshot) {
                                   if (!snapshot.hasData) {
                                     return Container(
-                        width: MediaQuery.of(context).size.width * .4,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .4,
                                         height: 400,
                                         child: Center(
-                                            child: CircularProgressIndicator()));
+                                            child:
+                                                CircularProgressIndicator()));
                                   } else {
                                     return ListView.builder(
                                         itemCount: myQueries.length,
@@ -547,44 +582,60 @@ class _ForumViewState extends State<ForumView> {
                                           return Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Container(
-                                              width:
-                                                  MediaQuery.of(context).size.width *.4,
- decoration: BoxDecoration(
-                          color: Color(0xff3f3d56),
-                                          borderRadius: BorderRadius.circular(15),
-                                          // boxShadow: [
-                                          //   BoxShadow(
-                                          // color: Colors.pink.shade200,
-                                          //     spreadRadius: 2,
-                                          //     blurRadius: 4,
-                                          //   ),
-                                          // ],
-                                        ),                                              child: Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .4,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xff3f3d56),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                // boxShadow: [
+                                                //   BoxShadow(
+                                                // color: Colors.pink.shade200,
+                                                //     spreadRadius: 2,
+                                                //     blurRadius: 4,
+                                                //   ),
+                                                // ],
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
                                                 child: Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Row(
-                                                        mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
                                                         children: [
                                                           Row(
                                                             children: [
-                                                              Text("Question By: ",style: TextStyle(color: Colors.white)),
                                                               Text(
-                                                                  "anonymous",style: TextStyle(color: Colors.white)),
+                                                                  "Question By: ",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white)),
+                                                              Text("anonymous",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white)),
                                                             ],
                                                           ),
                                                           InkWell(
-                                                            onTap: (){
-                                                                deleteForumQuestionFromHasura(myQueries[index].id!);
-                                                            setState(() {
-                                                              
-                                                            });
-                                                            },
-                                                            child: Icon(Icons.delete_forever)),
+                                                              onTap: () {
+                                                                deleteForumQuestionFromHasura(
+                                                                    myQueries[
+                                                                            index]
+                                                                        .id!);
+                                                                setState(() {});
+                                                              },
+                                                              child: Icon(Icons
+                                                                  .delete_forever)),
                                                         ],
                                                       ),
                                                       Text(
@@ -592,86 +643,103 @@ class _ForumViewState extends State<ForumView> {
                                                         style: TextStyle(
                                                             fontSize: 16,
                                                             fontWeight:
-                                                                FontWeight.bold,color: Colors.white),
+                                                                FontWeight.bold,
+                                                            color:
+                                                                Colors.white),
                                                       ),
                                                       Container(
-                                                        height: 
-                                                         myQueries[index]
-                                                                          .answers!
-                                                                          .length == 0 ? 40  
-                                                                          : myQueries[index]
-                                                                          .answers!
-                                                                          .length == 1 ? 70 : myQueries[index]
-                                                                          .answers!
-                                                                          .length == 2 ?
-                                                          140 : 200,
-                                                           decoration: BoxDecoration(
-                                              color: Colors.grey.shade300,
-                                          borderRadius: BorderRadius.circular(15),
-                                          // boxShadow: [
-                                          //   BoxShadow(
-                                          // color: Colors.pink.shade200,
-                                          //     spreadRadius: 2,
-                                          //     blurRadius: 4,
-                                          //   ),
-                                          // ],
-                                        ),
+                                                        height: myQueries[index]
+                                                                    .answers!
+                                                                    .length ==
+                                                                0
+                                                            ? 40
+                                                            : myQueries[index]
+                                                                        .answers!
+                                                                        .length ==
+                                                                    1
+                                                                ? 70
+                                                                : myQueries[index]
+                                                                            .answers!
+                                                                            .length ==
+                                                                        2
+                                                                    ? 140
+                                                                    : 200,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade300,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          // boxShadow: [
+                                                          //   BoxShadow(
+                                                          // color: Colors.pink.shade200,
+                                                          //     spreadRadius: 2,
+                                                          //     blurRadius: 4,
+                                                          //   ),
+                                                          // ],
+                                                        ),
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(8.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
                                                           child: Column(
                                                             mainAxisAlignment:
-                                                                MainAxisAlignment.start,
+                                                                MainAxisAlignment
+                                                                    .start,
                                                             crossAxisAlignment:
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                             myQueries[index]
-                                                                            .answers!
-                                                                            .length == 0 ?  Center(child: Text("No Answers Yet!",style: TextStyle(fontWeight: FontWeight.bold))) : 
-                                                                  Text("Answers :",style: TextStyle(fontWeight: FontWeight.bold)),
-                                                                
-                      
-                                                            Expanded(
-                                                                child: ListView.builder(
-                                                                    itemCount:
-                                                                        myQueries[index]
+                                                              myQueries[index]
+                                                                          .answers!
+                                                                          .length ==
+                                                                      0
+                                                                  ? Center(
+                                                                      child: Text(
+                                                                          "No Answers Yet!",
+                                                                          style: TextStyle(
+                                                                              fontWeight: FontWeight
+                                                                                  .bold)))
+                                                                  : Text(
+                                                                      "Answers :",
+                                                                      style: TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.bold)),
+                                                              Expanded(
+                                                                child: ListView
+                                                                    .builder(
+                                                                        itemCount: myQueries[index]
                                                                             .answers!
                                                                             .length,
-                                                                    scrollDirection:
-                                                                        Axis.vertical,
-                                                                    shrinkWrap: true,
-                                                                    itemBuilder:
-                                                                        (context,
-                                                                            indexx) {
-                                                                      List<String> ans =
-                                                                          myQueries[
-                                                                                  index]
-                                                                              .answers![
-                                                                                  indexx]
-                                                                              .split(
-                                                                                  '.');
-                                                                         return       
-                                                                       Padding(
-                                                                         padding: const EdgeInsets.all(8.0),
-                                                                         child: Column(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment
-                                                                                  .start,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment
-                                                                                  .start,
-                                                                          children: [
-                                                                            Text(
-                                                                              "${indexx + 1}: ${ans[0]}",
+                                                                        scrollDirection:
+                                                                            Axis
+                                                                                .vertical,
+                                                                        shrinkWrap:
+                                                                            true,
+                                                                        itemBuilder:
+                                                                            (context,
+                                                                                indexx) {
+                                                                          List<String>
+                                                                              ans =
+                                                                              myQueries[index].answers![indexx].split('.');
+                                                                          return Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.all(8.0),
+                                                                            child:
+                                                                                Column(
+                                                                              mainAxisAlignment: MainAxisAlignment.start,
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                Text(
+                                                                                  "${indexx + 1}: ${ans[0]}",
+                                                                                ),
+                                                                                Text("                 answered by:- ${ans[1]}"),
+                                                                              ],
                                                                             ),
-                                                                            Text(
-                                                                                "                 answered by:- ${ans[1]}"),
-                                                                          ],
-                                                                      ),
-                                                                       );
-                                                                    }),
+                                                                          );
+                                                                        }),
                                                               )
-                                                              
                                                             ],
                                                           ),
                                                         ),

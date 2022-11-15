@@ -29,7 +29,7 @@ class _TeachMeCustomState extends State<TeachMeCustom> {
   void initState() {
     super.initState();
     textEditingController.text = text;
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       initLanguages();
     });
   }
@@ -93,19 +93,16 @@ class _TeachMeCustomState extends State<TeachMeCustom> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        
-
-                              Padding(
-                                padding: const EdgeInsets.only(top: 100),
-                                child: Center(
-                                  child: Image.asset(
-                          "assets/images/customtts.png",
-                          width: MediaQuery.of(context).size.width * .4-10,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 100),
+                          child: Center(
+                            child: Image.asset(
+                              "assets/images/customtts.png",
+                              width:
+                                  MediaQuery.of(context).size.width * .4 - 10,
+                            ),
+                          ),
                         ),
-                                ),
-                              ),
-
-
                       ],
                     ),
                   ),

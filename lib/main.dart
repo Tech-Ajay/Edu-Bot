@@ -1,12 +1,11 @@
 import 'package:edu_bot/controller/home_page_controller.dart';
+import 'package:edu_bot/view/widget/EduLayout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hackathon/controller/home_page_controller.dart';
-import 'package:hackathon/controller/login_controller.dart';
-import 'package:hackathon/view/home.dart';
-import 'package:hackathon/model/user_model.dart';
+import 'package:edu_bot/controller/login_controller.dart';
+import 'package:edu_bot/view/home.dart';
+import 'package:edu_bot/model/user_model.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,9 +45,287 @@ class _LoginPageState extends State<LoginPage> {
           // MediaQuery.of(context).size.width >= 980
           //     ? Menu()
           //     : SizedBox(), // Responsive
-          Body()
+          EduLayout(
+            mobile: BodyMobile(),
+            large: Body(),
+          ),
+          // Body()
         ],
       ),
+    );
+  }
+}
+
+class BodyMobile extends StatefulWidget {
+  const BodyMobile({super.key});
+
+  @override
+  State<BodyMobile> createState() => _BodyMobileState();
+}
+
+class _BodyMobileState extends State<BodyMobile> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.height / 6),
+      child: Container(
+        width: MediaQuery.of(context).size.width * .3,
+        child: formLogin(context: context),
+      ),
+    );
+  }
+
+  Widget _loginWithButton({required String image, bool isActive = false}) {
+    return Container(
+      width: 90,
+      height: 70,
+      decoration: isActive
+          ? BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  spreadRadius: 10,
+                  blurRadius: 30,
+                )
+              ],
+              borderRadius: BorderRadius.circular(15),
+            )
+          : BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.grey.shade400),
+            ),
+      child: Center(
+          child: Container(
+        decoration: isActive
+            ? BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(35),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade400,
+                    spreadRadius: 2,
+                    blurRadius: 15,
+                  )
+                ],
+              )
+            : BoxDecoration(),
+        child: Image.asset(
+          image,
+          width: 35,
+        ),
+      )),
+    );
+  }
+
+  Widget formLogin({required BuildContext context}) {
+    LoginViewController loginController = Get.put(LoginViewController());
+    TextEditingController usernameController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
+    return Column(
+      children: [
+        TextField(
+          controller: usernameController,
+          decoration: InputDecoration(
+            hintText: 'Enter email or Phone number',
+            filled: true,
+            fillColor: Colors.blueGrey[50],
+            labelStyle: TextStyle(fontSize: 12),
+            contentPadding: EdgeInsets.only(left: 30),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blueGrey.shade50),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blueGrey.shade50),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+        ),
+        SizedBox(height: 30),
+        TextField(
+          controller: passwordController,
+          obscureText: true,
+          obscuringCharacter: '•',
+          decoration: InputDecoration(
+            hintText: 'Password',
+            counterText: 'Forgot password?',
+            suffixIcon: Icon(
+              Icons.visibility_off_outlined,
+              color: Colors.grey,
+            ),
+            filled: true,
+            fillColor: Colors.blueGrey[50],
+            labelStyle: TextStyle(fontSize: 12),
+            contentPadding: EdgeInsets.only(left: 30),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blueGrey.shade50),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blueGrey.shade50),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+        ),
+        SizedBox(height: 40),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.deepPurple.shade100,
+                spreadRadius: 10,
+                blurRadius: 20,
+              ),
+            ],
+          ),
+          child: GetBuilder<LoginViewController>(builder: (controller) {
+            return ElevatedButton(
+              child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  child: Row(
+                    children: [
+                      controller.isBusy.value
+                          ? CircularProgressIndicator()
+                          : Offstage(),
+                      Center(child: Text("Sign In")),
+                    ],
+                  )),
+              onPressed: () async {
+                HomePageController homePageController =
+                    Get.put(HomePageController());
+                controller.isBusy.value = true;
+
+                if ((usernameController.text.trim() != "") &&
+                    (passwordController.text != "")) {
+                  UserModel? model = await loginController.getUserDetails(
+                      email: usernameController.text.trim());
+
+                  if (model != null) {
+                    if (model.password == passwordController.text) {
+                      controller.isBusy.value = false;
+
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => HomePage(
+                                controller: homePageController,
+                              )));
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              backgroundColor: Colors.deepPurple.shade100,
+                              content: Text(" Wrong Password "),
+                              actions: [
+                                Center(
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.deepPurple,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("close ")),
+                                )
+                              ],
+                            );
+                          });
+                    }
+                  } else {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.deepPurple.shade100,
+                            content: Text(" Invalid UserName and Password "),
+                            actions: [
+                              Center(
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.deepPurple,
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("close ")),
+                              )
+                            ],
+                          );
+                        });
+                  }
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          backgroundColor: Colors.deepPurple.shade100,
+                          content: Text(" Enter UserName and Password "),
+                          actions: [
+                            Center(
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.deepPurple,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("close ")),
+                            )
+                          ],
+                        );
+                      });
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.deepPurple,
+                onPrimary: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            );
+          }),
+        ),
+        SizedBox(height: 40),
+        Row(children: [
+          Expanded(
+            child: Divider(
+              color: Colors.grey[300],
+              height: 50,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text("Or continue with"),
+          ),
+          Expanded(
+            child: Divider(
+              color: Colors.grey[400],
+              height: 50,
+            ),
+          ),
+        ]),
+        SizedBox(height: 40),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _loginWithButton(image: 'images/google.png'),
+            _loginWithButton(image: 'images/github.png', isActive: true),
+            _loginWithButton(image: 'images/facebook.png'),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -232,14 +509,14 @@ class Body extends StatelessWidget {
               vertical: MediaQuery.of(context).size.height / 6),
           child: Container(
             width: MediaQuery.of(context).size.width * .3,
-            child: _formLogin(context: context),
+            child: formLogin(context: context),
           ),
         )
       ],
     );
   }
 
-  Widget _formLogin({required BuildContext context}) {
+  Widget formLogin({required BuildContext context}) {
     LoginViewController loginController = Get.put(LoginViewController());
 
     return Column(

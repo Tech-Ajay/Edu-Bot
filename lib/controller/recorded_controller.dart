@@ -1,8 +1,4 @@
 import 'package:get/get.dart';
-import 'package:hackathon/model/recorded_model.dart';
+import 'package:edu_bot/model/recorded_model.dart';
 
-class RecordController extends GetxController {
-
-   
-  
-}
+class RecordController extends GetxController {}

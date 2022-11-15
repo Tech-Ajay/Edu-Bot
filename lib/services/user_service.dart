@@ -1,23 +1,21 @@
 import 'dart:convert';
 
-import 'package:hackathon/model/forum_model.dart';
-import 'package:hackathon/model/questionBank_model.dart';
-import 'package:hackathon/model/quiz_model.dart';
-import 'package:hackathon/model/score_model.dart';
-import 'package:hackathon/model/user_model.dart';
-import 'package:hackathon/utils/constants.dart';
-import 'package:hackathon/utils/environment.dart';
+import 'package:edu_bot/model/forum_model.dart';
+import 'package:edu_bot/model/questionBank_model.dart';
+import 'package:edu_bot/model/quiz_model.dart';
+import 'package:edu_bot/model/score_model.dart';
+import 'package:edu_bot/model/user_model.dart';
+import 'package:edu_bot/utils/constants.dart';
+import 'package:edu_bot/utils/environment.dart';
 import 'package:hasura_connect/hasura_connect.dart';
 
-class UserService  {
+class UserService {
   final HasuraConnect hasura;
   UserService()
       : this.hasura = HasuraConnect(
           Environment.HASURA_URL,
           headers: Constants.HASURA_HEADER,
         );
-
-
 
   Future<UserModel?> getStudentDetails({required String email}) async {
     print(email);
@@ -36,11 +34,10 @@ query MyQuery {
 
 
   """;
-  Map<String, dynamic> responseMap;
+    Map<String, dynamic> responseMap;
     try {
       responseMap = Map.castFrom(await hasura.query(query));
-      }
-      catch (error) {
+    } catch (error) {
       throw error;
     }
     Map<String, dynamic> dataMap = {};
@@ -66,7 +63,8 @@ query MyQuery {
   Future<void> saveForumQuestion({
     required ForumModel forumModel,
   }) async {
-        String answer = """${json.encode(forumModel.answers).replaceAll('"', '\\"')}""";
+    String answer =
+        """${json.encode(forumModel.answers).replaceAll('"', '\\"')}""";
 
     String query = """
   mutation MyMutation {
@@ -93,14 +91,11 @@ query MyQuery {
     if (dataMap.entries.first.value.values.first == 1) {
       print("success");
     }
-    
   }
-
 
   Future<void> saveScore({
     required ScoreModel scoreModel,
   }) async {
-
     String query = """
   mutation MyMutation {
   insert_score(objects: {id: "${scoreModel.id}", user_mail: "${scoreModel.user_mail}", score: "${scoreModel.score}", qid: "${scoreModel.qid}"}) {
@@ -124,7 +119,6 @@ query MyQuery {
     if (dataMap.entries.first.value.values.first == 1) {
       print("success");
     }
-    
   }
 
 // Future<List<ForumModel>?> getUserForumQuestions({required String email}) async {
@@ -139,8 +133,6 @@ query MyQuery {
 //     question
 //   }
 // }
-
-
 
 //   """;
 //   Map<String, dynamic> responseMap;
@@ -170,7 +162,7 @@ query MyQuery {
 //     }
 //   }
 
-   Future<List<ForumModel>> getUserForumQuestions(
+  Future<List<ForumModel>> getUserForumQuestions(
       {required String email}) async {
     String query = """
 query MyQuery {
@@ -202,8 +194,8 @@ query MyQuery {
       throw error;
     }
   }
-  Future<List<ForumModel>> getAllForumQuestions(
-      {required String email}) async {
+
+  Future<List<ForumModel>> getAllForumQuestions({required String email}) async {
     String query = """
 query MyQuery {
    forum_questions(where: {creator_email: {_neq: "$email"}}) {
@@ -234,11 +226,12 @@ query MyQuery {
       throw error;
     }
   }
-  Future updateAnswer({required ForumModel forumModel,required List<String> ans}) async {
-  
-          String answer = """${json.encode(ans).replaceAll('"', '\\"')}""";
 
-    String query =  """
+  Future updateAnswer(
+      {required ForumModel forumModel, required List<String> ans}) async {
+    String answer = """${json.encode(ans).replaceAll('"', '\\"')}""";
+
+    String query = """
 mutation MyMutation {
   update_forum_questions(where: {id: {_eq: "${forumModel.id}"}}, _set: {answers: "${answer}"}) {
     affected_rows
@@ -258,11 +251,10 @@ mutation MyMutation {
       return null;
     }
     dataMap = Map.castFrom(responseMap['data']);
-    if (dataMap.entries.first.value.values.first == 1) {
-    }
+    if (dataMap.entries.first.value.values.first == 1) {}
   }
 
-Future<List<QuizModel>> getListOfQuizes() async {
+  Future<List<QuizModel>> getListOfQuizes() async {
     String query = """
 query MyQuery {
   quiz_table {
@@ -293,8 +285,7 @@ query MyQuery {
     }
   }
 
-  
-Future<List<ScoreModel>> getListOfScores() async {
+  Future<List<ScoreModel>> getListOfScores() async {
     String query = """
 query MyQuery {
   score {
@@ -324,8 +315,8 @@ query MyQuery {
     }
   }
 
-
-    Future<QuestionBankModel?> getQuestionFromHasura({required String qid}) async {
+  Future<QuestionBankModel?> getQuestionFromHasura(
+      {required String qid}) async {
     String query = """
 query MyQuery {
    question_by_pk(id: "$qid") {
@@ -342,11 +333,10 @@ query MyQuery {
 
 
   """;
-  Map<String, dynamic> responseMap;
+    Map<String, dynamic> responseMap;
     try {
       responseMap = Map.castFrom(await hasura.query(query));
-      }
-      catch (error) {
+    } catch (error) {
       throw error;
     }
     Map<String, dynamic> dataMap = {};
@@ -369,10 +359,9 @@ query MyQuery {
     }
   }
 
-Future deleteForumQuestion({
+  Future deleteForumQuestion({
     required String id,
   }) async {
-
     String query = """
 mutation MyMutation {
   delete_forum_questions(where: {id: {_eq: "$id"}}) {
@@ -392,7 +381,6 @@ mutation MyMutation {
       return null;
     }
     dataMap = Map.castFrom(responseMap['data']);
-    if (dataMap.entries.first.value.values.first == 1) {
-    }
+    if (dataMap.entries.first.value.values.first == 1) {}
   }
 }

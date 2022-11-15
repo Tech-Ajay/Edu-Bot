@@ -1,5 +1,4 @@
-
-import 'package:hackathon/utils/environment.dart';
+import 'package:edu_bot/utils/environment.dart';
 
 class Constants {
   static const HASURA_HEADER = {

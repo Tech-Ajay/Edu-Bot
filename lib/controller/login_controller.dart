@@ -1,14 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:hackathon/model/user_model.dart';
-import 'package:hackathon/services/user_service.dart';
-
+import 'package:edu_bot/model/user_model.dart';
+import 'package:edu_bot/services/user_service.dart';
 
 class LoginViewController extends GetxController {
- UserService userService = UserService();
+  UserService userService = UserService();
 
-UserModel? user;
-RxBool isBusy = false.obs; 
+  UserModel? user;
+  RxBool isBusy = false.obs;
 
   @override
   void onInit() async {
@@ -20,11 +19,10 @@ RxBool isBusy = false.obs;
     super.onReady();
   }
 
- Future<UserModel?> getUserDetails({required String email}) async {
-   isBusy.value=true;
-    user = await userService.getStudentDetails(email:email);
-        isBusy.value= false;
+  Future<UserModel?> getUserDetails({required String email}) async {
+    isBusy.value = true;
+    user = await userService.getStudentDetails(email: email);
+    isBusy.value = false;
     return user;
-    
   }
 }

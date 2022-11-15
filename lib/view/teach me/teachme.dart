@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hackathon/view/teach%20me/speechtotext.dart';
-import 'package:hackathon/view/teach%20me/teach_me_custom.dart';
+import 'package:edu_bot/view/teach%20me/speechtotext.dart';
+import 'package:edu_bot/view/teach%20me/teach_me_custom.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:text_to_speech/text_to_speech.dart';
@@ -64,7 +64,7 @@ class _TeachMeState extends State<TeachMe> {
   void _startListening() async {
     index = 1;
     await _speechToText.listen(onResult: _onSpeechResult);
-    setState(() {});   
+    setState(() {});
   }
 
   /// Manually stop the active speech recognition session
@@ -79,64 +79,69 @@ class _TeachMeState extends State<TeachMe> {
   Future<void> _onSpeechResult(SpeechRecognitionResult result) async {
     _lastWords = result.recognizedWords;
     print(_lastWords);
-    if (_lastWords=="pollution" || _lastWords=="teach me pollution" || _lastWords=="what is pollution" && index == 1) {
-           tts.speak("${speak[2]}");
+    if (_lastWords == "pollution" ||
+        _lastWords == "teach me pollution" ||
+        _lastWords == "what is pollution" && index == 1) {
+      tts.speak("${speak[2]}");
       index++;
-                  await _stopListening();
-                  index=1;
-                  
-
+      await _stopListening();
+      index = 1;
     }
-if (_lastWords=="preposition" || _lastWords=="teach me about preposition" || _lastWords=="what is preposition" || _lastWords=="chapter 4 preposition"  && index == 1) {
-           tts.speak("${speak[3]}");
+    if (_lastWords == "preposition" ||
+        _lastWords == "teach me about preposition" ||
+        _lastWords == "what is preposition" ||
+        _lastWords == "chapter 4 preposition" && index == 1) {
+      tts.speak("${speak[3]}");
       index++;
-                  await _stopListening();
-                                    index=1;
-
+      await _stopListening();
+      index = 1;
     }
-    if (_lastWords=="noun" || _lastWords=="now" || _lastWords=="what is noun" || _lastWords=="edubot tell me something about noun" && index == 1) {
-           tts.speak("${speak[0]}");
+    if (_lastWords == "noun" ||
+        _lastWords == "now" ||
+        _lastWords == "what is noun" ||
+        _lastWords == "edubot tell me something about noun" && index == 1) {
+      tts.speak("${speak[0]}");
       index++;
-                  await _stopListening();
-                                    index=1;
-
+      await _stopListening();
+      index = 1;
     }
-      if (_lastWords=="shapes"  || _lastWords=="what is shapes" || _lastWords=="chapter 6 shapes" && index == 1) {
-           tts.speak("${speak[0]}");
+    if (_lastWords == "shapes" ||
+        _lastWords == "what is shapes" ||
+        _lastWords == "chapter 6 shapes" && index == 1) {
+      tts.speak("${speak[0]}");
       index++;
-                  await _stopListening();
-                                    index=1;
-
+      await _stopListening();
+      index = 1;
     }
-      if (_lastWords=="addition" || _lastWords=="chapter 7 addition" || _lastWords=="teach me addition" || _lastWords=="what is addition" && index == 1) {
-           tts.speak("${speak[6]}");
+    if (_lastWords == "addition" ||
+        _lastWords == "chapter 7 addition" ||
+        _lastWords == "teach me addition" ||
+        _lastWords == "what is addition" && index == 1) {
+      tts.speak("${speak[6]}");
       index++;
-                  await _stopListening();
-                                    index=1;
-
+      await _stopListening();
+      index = 1;
     }
 
     setState(() {});
-    
   }
-List<String> speak = [
-      'Chapter 1, Noun. a word (other than a pronoun) used to identify any of a class of people, places, or things',
-      'Chapter 2, My Family. My family has always been very supportive of my problems and help me come out of them. Every time someone talks about family, there are many things that come to the minds of different people. There are many types of families. These include small family, large family, joint family, nuclear family, and many more.Joint families are the largest type of family as far as people are concerned. Looking at a nuclear family, a person can see the value of a joint family but is separated from it. A joint family can be defined as a family where 3 generations of people live together. This includes grandparents, parents, uncles, aunts, and their children, with the grandfather being the head of the family.A small family comprises us, parents, and children. Here the father is the head of the family. A large family consists of grandparents, parents, and their children.  The small family and nuclear family are similar to each other in structure, but only the values differ.',
-      'Chapter 3, Pollution. Pollution affects our health very much. Inhaling polluted air for a long time can cause lung diseases. There are other pollutions like noise pollution, plastic pollution, solid waste pollution.There are many types of pollution. All these pollutions affect our daily life. Moreover, it directly affects the quality of life we are living. People who live in the city are more affected by air pollution. Pollutants like carbon-die-oxide and carbon-monoxide pollute the air.People who live in the villages do not suffer from air pollution. Water pollution is a problem for them. Pollutants like herbicides, domestic wastes, insecticides make the water polluted there. Water pollution lowers the quality of agriculture.',
-      'Prepostion is a word governing, and usually preceding, a noun or pronoun and expressing a relation to another word or element in the clause, as in the man on the platform, she arrived after dinner, what did you do it for ?',
-      'Chapter 1, Noun. a word (other than a pronoun) used to identify any of a class of people, places, or things',
-      'Chapter 2, My Family. My family has always been very supportive of my problems and help me come out of them. Every time someone talks about family, there are many things that come to the minds of different people. There are many types of families. These include small family, large family, joint family, nuclear family, and many more.Joint families are the largest type of family as far as people are concerned. Looking at a nuclear family, a person can see the value of a joint family but is separated from it. A joint family can be defined as a family where 3 generations of people live together. This includes grandparents, parents, uncles, aunts, and their children, with the grandfather being the head of the family.A small family comprises us, parents, and children. Here the father is the head of the family. A large family consists of grandparents, parents, and their children.  The small family and nuclear family are similar to each other in structure, but only the values differ.',
-      'Chapter 7,  the action or process of adding something to something else.',
-      'Prepostion is a word governing, and usually preceding, a noun or pronoun and expressing a relation to another word or element in the clause, as in the man on the platform, she arrived after dinner, what did you do it for ?',
-      'Chapter 7, Noun. a word (other than a pronoun) used to identify any of a class of people, places, or things',
-      'Chapter 2, My Family. My family has always been very supportive of my problems and help me come out of them. Every time someone talks about family, there are many things that come to the minds of different people. There are many types of families. These include small family, large family, joint family, nuclear family, and many more.Joint families are the largest type of family as far as people are concerned. Looking at a nuclear family, a person can see the value of a joint family but is separated from it. A joint family can be defined as a family where 3 generations of people live together. This includes grandparents, parents, uncles, aunts, and their children, with the grandfather being the head of the family.A small family comprises us, parents, and children. Here the father is the head of the family. A large family consists of grandparents, parents, and their children.  The small family and nuclear family are similar to each other in structure, but only the values differ.',
-      'Chapter 3, Pollution. Pollution affects our health very much. Inhaling polluted air for a long time can cause lung diseases. There are other pollutions like noise pollution, plastic pollution, solid waste pollution.There are many types of pollution. All these pollutions affect our daily life. Moreover, it directly affects the quality of life we are living. People who live in the city are more affected by air pollution. Pollutants like carbon-die-oxide and carbon-monoxide pollute the air.People who live in the villages do not suffer from air pollution. Water pollution is a problem for them. Pollutants like herbicides, domestic wastes, insecticides make the water polluted there. Water pollution lowers the quality of agriculture.',
-      'Prepostion is a word governing, and usually preceding, a noun or pronoun and expressing a relation to another word or element in the clause, as in the man on the platform, she arrived after dinner, what did you do it for ?',
-    ];
+
+  List<String> speak = [
+    'Chapter 1, Noun. a word (other than a pronoun) used to identify any of a class of people, places, or things',
+    'Chapter 2, My Family. My family has always been very supportive of my problems and help me come out of them. Every time someone talks about family, there are many things that come to the minds of different people. There are many types of families. These include small family, large family, joint family, nuclear family, and many more.Joint families are the largest type of family as far as people are concerned. Looking at a nuclear family, a person can see the value of a joint family but is separated from it. A joint family can be defined as a family where 3 generations of people live together. This includes grandparents, parents, uncles, aunts, and their children, with the grandfather being the head of the family.A small family comprises us, parents, and children. Here the father is the head of the family. A large family consists of grandparents, parents, and their children.  The small family and nuclear family are similar to each other in structure, but only the values differ.',
+    'Chapter 3, Pollution. Pollution affects our health very much. Inhaling polluted air for a long time can cause lung diseases. There are other pollutions like noise pollution, plastic pollution, solid waste pollution.There are many types of pollution. All these pollutions affect our daily life. Moreover, it directly affects the quality of life we are living. People who live in the city are more affected by air pollution. Pollutants like carbon-die-oxide and carbon-monoxide pollute the air.People who live in the villages do not suffer from air pollution. Water pollution is a problem for them. Pollutants like herbicides, domestic wastes, insecticides make the water polluted there. Water pollution lowers the quality of agriculture.',
+    'Prepostion is a word governing, and usually preceding, a noun or pronoun and expressing a relation to another word or element in the clause, as in the man on the platform, she arrived after dinner, what did you do it for ?',
+    'Chapter 1, Noun. a word (other than a pronoun) used to identify any of a class of people, places, or things',
+    'Chapter 2, My Family. My family has always been very supportive of my problems and help me come out of them. Every time someone talks about family, there are many things that come to the minds of different people. There are many types of families. These include small family, large family, joint family, nuclear family, and many more.Joint families are the largest type of family as far as people are concerned. Looking at a nuclear family, a person can see the value of a joint family but is separated from it. A joint family can be defined as a family where 3 generations of people live together. This includes grandparents, parents, uncles, aunts, and their children, with the grandfather being the head of the family.A small family comprises us, parents, and children. Here the father is the head of the family. A large family consists of grandparents, parents, and their children.  The small family and nuclear family are similar to each other in structure, but only the values differ.',
+    'Chapter 7,  the action or process of adding something to something else.',
+    'Prepostion is a word governing, and usually preceding, a noun or pronoun and expressing a relation to another word or element in the clause, as in the man on the platform, she arrived after dinner, what did you do it for ?',
+    'Chapter 7, Noun. a word (other than a pronoun) used to identify any of a class of people, places, or things',
+    'Chapter 2, My Family. My family has always been very supportive of my problems and help me come out of them. Every time someone talks about family, there are many things that come to the minds of different people. There are many types of families. These include small family, large family, joint family, nuclear family, and many more.Joint families are the largest type of family as far as people are concerned. Looking at a nuclear family, a person can see the value of a joint family but is separated from it. A joint family can be defined as a family where 3 generations of people live together. This includes grandparents, parents, uncles, aunts, and their children, with the grandfather being the head of the family.A small family comprises us, parents, and children. Here the father is the head of the family. A large family consists of grandparents, parents, and their children.  The small family and nuclear family are similar to each other in structure, but only the values differ.',
+    'Chapter 3, Pollution. Pollution affects our health very much. Inhaling polluted air for a long time can cause lung diseases. There are other pollutions like noise pollution, plastic pollution, solid waste pollution.There are many types of pollution. All these pollutions affect our daily life. Moreover, it directly affects the quality of life we are living. People who live in the city are more affected by air pollution. Pollutants like carbon-die-oxide and carbon-monoxide pollute the air.People who live in the villages do not suffer from air pollution. Water pollution is a problem for them. Pollutants like herbicides, domestic wastes, insecticides make the water polluted there. Water pollution lowers the quality of agriculture.',
+    'Prepostion is a word governing, and usually preceding, a noun or pronoun and expressing a relation to another word or element in the clause, as in the man on the platform, she arrived after dinner, what did you do it for ?',
+  ];
   @override
   Widget build(BuildContext context) {
-    
-
     List<String> chapter = [
       'Chapter: 1, \n Topic: Noun',
       'Chapter: 2, \n Topic: My Family',
@@ -165,49 +170,48 @@ List<String> speak = [
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                   Row(
-                     mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            // Container(
-            //   padding: EdgeInsets.all(16),
-            //   child: Text(
-            //     'Recognized words:',
-            //     style: TextStyle(fontSize: 20.0),
-            //   ),
-            // ),
-            FloatingActionButton(
-              backgroundColor: Color(0xff6c64fa),
-              onPressed:
-                _speechToText.isNotListening
-                      ? _startListening
-                      : _stopListening,
-              
-                  // If not yet listening for speech start, otherwise stop
-                  
-             // tooltip: 'Listen',
-              child: Icon(
-                  _speechToText.isNotListening ? Icons.mic_off : Icons.mic),
-            ),
-        //     Expanded(
-        //   child: Container(
-        //     padding: EdgeInsets.all(16),
-        //     child: Text(
-        //       // If listening is active show the recognized words
-        //       _speechToText.isListening
-        //           ? '$_lastWords'
-        //           // If listening isn't active but could be tell the user
-        //           // how to start it, otherwise indicate that speech
-        //           // recognition is not yet ready or not supported on
-        //           // the target device
-        //           : _speechEnabled
-        //               ? 'Tap the microphone to start listening...'
-        //               : 'Speech not available',
-        //     ),
-        //   ),
-        // ),
-          ],
-        ),
-        
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      // Container(
+                      //   padding: EdgeInsets.all(16),
+                      //   child: Text(
+                      //     'Recognized words:',
+                      //     style: TextStyle(fontSize: 20.0),
+                      //   ),
+                      // ),
+                      FloatingActionButton(
+                        backgroundColor: Color(0xff6c64fa),
+                        onPressed: _speechToText.isNotListening
+                            ? _startListening
+                            : _stopListening,
+
+                        // If not yet listening for speech start, otherwise stop
+
+                        // tooltip: 'Listen',
+                        child: Icon(_speechToText.isNotListening
+                            ? Icons.mic_off
+                            : Icons.mic),
+                      ),
+                      //     Expanded(
+                      //   child: Container(
+                      //     padding: EdgeInsets.all(16),
+                      //     child: Text(
+                      //       // If listening is active show the recognized words
+                      //       _speechToText.isListening
+                      //           ? '$_lastWords'
+                      //           // If listening isn't active but could be tell the user
+                      //           // how to start it, otherwise indicate that speech
+                      //           // recognition is not yet ready or not supported on
+                      //           // the target device
+                      //           : _speechEnabled
+                      //               ? 'Tap the microphone to start listening...'
+                      //               : 'Speech not available',
+                      //     ),
+                      //   ),
+                      // ),
+                    ],
+                  ),
                   Row(
                     children: [
                       InkWell(
@@ -246,7 +250,7 @@ List<String> speak = [
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                             Padding(
+                              Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.upload,
@@ -299,10 +303,8 @@ List<String> speak = [
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Icon(
-                                    Icons.record_voice_over_outlined,
-                                    size: 30,
-                                    color: Colors.white),
+                                child: Icon(Icons.record_voice_over_outlined,
+                                    size: 30, color: Colors.white),
                               ),
                               Text(
                                 'Custom \nTeach me',
@@ -318,8 +320,7 @@ List<String> speak = [
                       ),
                       InkWell(
                         onTap: () {
-                                                        tts.stop();
-
+                          tts.stop();
                         },
                         child: Image.asset(
                           "assets/images/tts.png",

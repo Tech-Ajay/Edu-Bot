@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hackathon/controller/quiz_list_controller.dart';
-import 'package:hackathon/model/questionBank_model.dart';
-import 'package:hackathon/model/score_model.dart';
-import 'package:hackathon/services/user_service.dart';
+import 'package:edu_bot/controller/quiz_list_controller.dart';
+import 'package:edu_bot/model/questionBank_model.dart';
+import 'package:edu_bot/model/score_model.dart';
+import 'package:edu_bot/services/user_service.dart';
 import 'package:uuid/uuid.dart';
 
 class Quizz extends StatefulWidget {
@@ -25,24 +25,25 @@ class _QuizzState extends State<Quizz> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-                              color: Colors.white,
-
+        color: Colors.white,
         child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            
             children: [
               Column(
                 children: [
-                                SizedBox(height: 100,),
-
-                         Image.asset(
-                            "assets/images/quiz.png",
-                            width: MediaQuery.of(context).size.width * .25,
-                          ),
+                  SizedBox(
+                    height: 100,
+                  ),
+                  Image.asset(
+                    "assets/images/quiz.png",
+                    width: MediaQuery.of(context).size.width * .25,
+                  ),
                 ],
               ),
-              SizedBox(width: 50,),
+              SizedBox(
+                width: 50,
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -59,16 +60,17 @@ class _QuizzState extends State<Quizz> {
                       // ],
                     ),
                     child: Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 12),
                       child: Text(
                         " ${widget.questionModelList[questionindex].subject} Quiz ",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
-                               SizedBox(height: 30,),
-
+                  SizedBox(
+                    height: 30,
+                  ),
                   Container(
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -95,7 +97,8 @@ class _QuizzState extends State<Quizz> {
                             height: MediaQuery.of(context).size.height - 600,
                             color: Colors.white,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,21 +146,26 @@ class _QuizzState extends State<Quizz> {
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           primary: Colors.deepPurple,
-                                          padding:
-                                              EdgeInsets.symmetric(horizontal: 10),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10),
                                         ),
                                         onPressed: () async {
                                           int index = controller.options
                                               .indexWhere((element) => element);
-                                          if (widget.questionModelList[questionindex]
+                                          if (widget
+                                                  .questionModelList[
+                                                      questionindex]
                                                   .answer ==
-                                              widget.questionModelList[questionindex]
+                                              widget
+                                                  .questionModelList[
+                                                      questionindex]
                                                   .options![index]) {
                                             controller.answer++;
                                           }
                                           setState(() {});
 
-                                          if ((widget.questionModelList.length - 1) ==
+                                          if ((widget.questionModelList.length -
+                                                  1) ==
                                               questionindex) {
                                             print(controller.answer);
                                             ScoreModel scoreModel = ScoreModel(
@@ -172,7 +180,8 @@ class _QuizzState extends State<Quizz> {
 
                                             await userService.saveScore(
                                                 scoreModel: scoreModel);
-                                            await Get.delete<QuizListController>();
+                                            await Get.delete<
+                                                QuizListController>();
                                             Navigator.pop(context);
                                           } else {
                                             questionindex++;
@@ -181,7 +190,8 @@ class _QuizzState extends State<Quizz> {
                                           }
                                         },
                                         child: Text(
-                                            (widget.questionModelList.length - 1) ==
+                                            (widget.questionModelList.length -
+                                                        1) ==
                                                     questionindex
                                                 ? "finish"
                                                 : "Next")),
@@ -194,15 +204,16 @@ class _QuizzState extends State<Quizz> {
                       )),
                 ],
               ),
-               Column(
-                 mainAxisAlignment: MainAxisAlignment.end,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                         Image.asset(
-                            "assets/images/quiz2.png",
-                            width: MediaQuery.of(context).size.width * .25,
-                          ),
-                                        SizedBox(height: 80,),
-
+                  Image.asset(
+                    "assets/images/quiz2.png",
+                    width: MediaQuery.of(context).size.width * .25,
+                  ),
+                  SizedBox(
+                    height: 80,
+                  ),
                 ],
               ),
             ],
