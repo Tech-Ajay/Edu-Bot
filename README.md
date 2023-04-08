@@ -1,16 +1,12 @@
-# edu_bot
+This App Listens to student commands and respond accordingly. Abot which can determine how much the student grasped knowledge through the data which is taken from their assessment or quiz.
 
-A new Flutter project.
+A Bot which helps students in their education.
 
-## Getting Started
+Teachers can also create any forms of question through a board given in the teacher's software.
 
-This project is a starting point for a Flutter application.
+Students analytics page can be used to determine students knowledge and capabilities, strength and weakness. 
 
-A few resources to get you started if this is your first Flutter project:
+Teachers analytics can be used to determine the quality of teaching and the efficiency of the knowledge being put through.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+complete video of the project
+https://drive.google.com/file/d/1KYQ2klHKo1mbSnKRiwhTJDY5HiPquWRd/view
